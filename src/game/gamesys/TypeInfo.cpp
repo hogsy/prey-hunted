@@ -5,6 +5,9 @@
 #define private		public
 #define protected	public
 
+// hogsy: So evil that Microsoft introduced a check for it, we define the below to work around that.
+#define _ALLOW_KEYWORD_MACROS
+
 #include "../../idlib/precompiled.h"
 #pragma hdrstop
 

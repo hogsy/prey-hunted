@@ -1,11 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "2005game.vcproj", "{49BEC5C6-B964-417A-851E-808886B57430}"
-	ProjectSection(ProjectDependencies) = postProject
-		{49BEC5C6-B964-417A-851E-808886B57400} = {49BEC5C6-B964-417A-851E-808886B57400}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "2005game.vcxproj", "{49BEC5C6-B964-417A-851E-808886B57430}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "idLib", "2005idlib.vcproj", "{49BEC5C6-B964-417A-851E-808886B57400}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "idLib", "2005idlib.vcxproj", "{49BEC5C6-B964-417A-851E-808886B57400}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,5 +33,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6551DBD5-17C6-4C34-9166-3FBFEBCE55F8}
 	EndGlobalSection
 EndGlobal
