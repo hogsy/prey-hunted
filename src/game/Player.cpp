@@ -6236,43 +6236,44 @@ idPlayer::CalculateFirstPersonView
 ===============
 */
 void idPlayer::CalculateFirstPersonView( void ) {
-	if( ( pm_modelView.GetInteger() == 1 ) || ( ( pm_modelView.GetInteger() == 2 ) && IsDead() ) ) { // HUMANHEAD cjr:  Replaced health <= 0 with IsDead() call for deathwalk override
-		//	Displays the view from the point of view of the "camera" joint in the player model
-
-		idAFAttachment *headAttch = head.GetEntity();
-		idAnimator *headAnim = headAttch->GetAnimator();
-		if( headAnim == NULL ) {
-			return;
-		}
-
-		/* static so we're not looking it up every frame */
-		static jointHandle_t headJoint = (jointHandle_t)( -2 ); /* cast because petty visual studio */
-		if( headJoint == -2 ) {
-			headJoint = headAnim->GetJointHandle( "camera" );
-		}
-
-		idMat3 axis;
-		idVec3 origin;
-
-		headAttch->GetJointWorldTransform( headJoint, gameLocal.time, origin, axis );
-
-		/* not using this anymore, the head cam produces really fucked
-		 * angles for most of the weapons which are... vomit enducing :(
-		idAngles ang;
-		ang = axis.ToAngles();
-		ang.pitch = viewAngles.pitch;
-		*/
-
-		firstPersonViewOrigin = origin;
-		firstPersonViewAxis = viewAngles.ToMat3();
-	} else {
+	if( pm_modelView.GetInteger() == 0 || pm_modelView.GetInteger() == 2 && !IsDead() ) {
 		// offset for local bobbing and kicks
 		GetViewPos( firstPersonViewOrigin, firstPersonViewAxis );
 #if 0
 		// shakefrom sound stuff only happens in first person
 		firstPersonViewAxis = firstPersonViewAxis * playerView.ShakeAxis();
 #endif
+		return;
 	}
+
+	//	Displays the view from the point of view of the "camera" joint in the player model
+
+	idAFAttachment *headAttch = head.GetEntity();
+	idAnimator *headAnim = headAttch->GetAnimator();
+	if( headAnim == NULL ) {
+		return;
+	}
+
+	// Static so we're not looking it up every frame
+	static jointHandle_t headJoint = (jointHandle_t)( -2 );
+	if( headJoint == -2 ) {
+		headJoint = headAnim->GetJointHandle( "camera" );
+	}
+
+	idMat3 axis;
+	idVec3 origin;
+
+	headAttch->GetJointWorldTransform( headJoint, gameLocal.time, origin, axis );
+
+	/* not using this anymore, the head cam produces really fucked
+	 * angles for most of the weapons which are... vomit enducing :(
+	idAngles ang;
+	ang = axis.ToAngles();
+	ang.pitch = viewAngles.pitch;
+	*/
+
+	firstPersonViewOrigin = origin;
+	firstPersonViewAxis = viewAngles.ToMat3();
 }
 
 /*
@@ -6345,7 +6346,9 @@ void idPlayer::CalculateRenderView( void ) {
 
 			// set the viewID to the clientNum + 1, so we can suppress the right player bodies and
 			// allow the right player view weapons
-			renderView->viewID = entityNumber + 1;
+			if( pm_modelView.GetInteger() == 0 ) {
+				renderView->viewID = entityNumber + 1;
+			}
 		}
 		
 		// field of view
@@ -6755,7 +6758,7 @@ void idPlayer::ClientPredictionThink( void ) {
 		headRenderEnt = NULL;
 	}
 
-	if ( gameLocal.isMultiplayer || g_showPlayerShadow.GetBool() ) {
+	if ( gameLocal.isMultiplayer || g_showPlayerShadow.GetBool() || pm_modelView.GetInteger() > 0 ) {
 		renderEntity.suppressShadowInViewID	= 0;
 		if ( headRenderEnt ) {
 			headRenderEnt->suppressShadowInViewID = 0;
