@@ -6236,20 +6236,35 @@ idPlayer::CalculateFirstPersonView
 ===============
 */
 void idPlayer::CalculateFirstPersonView( void ) {
-	if ( ( pm_modelView.GetInteger() == 1 ) || ( ( pm_modelView.GetInteger() == 2 ) && IsDead() ) ) { // HUMANHEAD cjr:  Replaced health <= 0 with IsDead() call for deathwalk override
+	if( ( pm_modelView.GetInteger() == 1 ) || ( ( pm_modelView.GetInteger() == 2 ) && IsDead() ) ) { // HUMANHEAD cjr:  Replaced health <= 0 with IsDead() call for deathwalk override
 		//	Displays the view from the point of view of the "camera" joint in the player model
+
+		idAFAttachment *headAttch = head.GetEntity();
+		idAnimator *headAnim = headAttch->GetAnimator();
+		if( headAnim == NULL ) {
+			return;
+		}
+
+		/* static so we're not looking it up every frame */
+		static jointHandle_t headJoint = (jointHandle_t)( -2 ); /* cast because petty visual studio */
+		if( headJoint == -2 ) {
+			headJoint = headAnim->GetJointHandle( "camera" );
+		}
 
 		idMat3 axis;
 		idVec3 origin;
-		idAngles ang;
 
-		ang = viewBobAngles + playerView.AngleOffset(0, 0);
-		ang.yaw += viewAxis[ 0 ].ToYaw();
-		
-		jointHandle_t joint = animator.GetJointHandle( "camera" );
-		animator.GetJointTransform( joint, gameLocal.time, origin, axis );
-		firstPersonViewOrigin = ( origin + modelOffset ) * ( viewAxis * physicsObj.GetGravityAxis() ) + physicsObj.GetOrigin() + viewBob;
-		firstPersonViewAxis = axis * ang.ToMat3() * physicsObj.GetGravityAxis();
+		headAttch->GetJointWorldTransform( headJoint, gameLocal.time, origin, axis );
+
+		/* not using this anymore, the head cam produces really fucked
+		 * angles for most of the weapons which are... vomit enducing :(
+		idAngles ang;
+		ang = axis.ToAngles();
+		ang.pitch = viewAngles.pitch;
+		*/
+
+		firstPersonViewOrigin = origin;
+		firstPersonViewAxis = viewAngles.ToMat3();
 	} else {
 		// offset for local bobbing and kicks
 		GetViewPos( firstPersonViewOrigin, firstPersonViewAxis );

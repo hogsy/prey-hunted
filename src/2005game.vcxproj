@@ -96,9 +96,9 @@
     <_ProjectFileVersion>16.0.30028.132</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..</OutDir>
+    <OutDir>..\</OutDir>
     <LinkIncremental>true</LinkIncremental>
-    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <TargetName>gamex86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -163,8 +163,9 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Message>Copying gamex86.lib</Message>
-      <Command>copy "$(TargetDir)\gamex86.lib" "$(OutDir)"</Command>
+      <Message>Packing game resources.</Message>
+      <Command>cd "$(TargetDir)"
+.\package_game.bat</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
