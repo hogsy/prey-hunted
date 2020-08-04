@@ -1,0 +1,36 @@
+guis/assets/hud/health_body
+{
+    {
+		blend   	gl_zero, gl_one_minus_src_alpha
+		map			guis/assets/hud/scanline.tga
+		scroll 		0, time * 0.5 * -1
+		scale		1, 0.75
+	}
+	{
+		blend  		gl_one_minus_dst_alpha, gl_one
+		map			guis/assets/hud/health_body_scan.tga
+		colored
+	}
+	/*
+	{
+		blend  		add
+		map			guis/assets/hud/health_body_scan.tga
+		red			0.0
+		green		0.15
+		blue		0.0
+	}
+	*/
+	{
+		blend   	add
+		map         guis/assets/hud/health_body.tga
+        clamp
+		colored
+	}
+	{
+		blend  		blend
+		map			guis/assets/hud/scanline.tga
+		scroll 		0, time * 0.5 * -1
+		colored
+		scale		1, 0.75
+	}
+}
