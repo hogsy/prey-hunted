@@ -6272,6 +6272,10 @@ void idPlayer::CalculateFirstPersonView( void ) {
 	ang.pitch = viewAngles.pitch;
 	*/
 
+	// Move the camera back a little bit further into the head...
+	idVec3 forward = viewAngles.ToForward();
+	origin -= forward * 4.0f;
+
 	firstPersonViewOrigin = origin;
 	firstPersonViewAxis = viewAngles.ToMat3();
 }
@@ -6348,6 +6352,12 @@ void idPlayer::CalculateRenderView( void ) {
 			// allow the right player view weapons
 			if( pm_modelView.GetInteger() == 0 ) {
 				renderView->viewID = entityNumber + 1;
+				/*
+				idAFAttachment *headAttch = head.GetEntity();
+				if( headAttch ) {
+					headAttch->Hide();
+				}
+				*/
 			}
 		}
 		
@@ -6684,16 +6694,6 @@ void idPlayer::ClientPredictionThink( void ) {
 	oldButtons = usercmd.buttons;
 
 	usercmd = gameLocal.usercmds[ entityNumber ];
-
-	//HUMANHEAD rww - "no good for predictions"? i have never seen evidence to support that, and it is necessary for predicted
-	//projectiles, so i am leaving this id code out.
-	/*
-	if ( entityNumber != gameLocal.localClientNum ) {
-		// ignore attack button of other clients. that's no good for predictions
-		usercmd.buttons &= ~BUTTON_ATTACK;
-	}
-	*/
-	//HUMANHEAD END
 
 	buttonMask &= usercmd.buttons;
 	usercmd.buttons &= ~buttonMask;

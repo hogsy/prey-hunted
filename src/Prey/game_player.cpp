@@ -962,11 +962,11 @@ void hhPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	_hud->SetStateFloat("lightertemp", lighterTemperature);
 	_hud->SetStateFloat( "player_spiritpercent", ((float)spiritPower)/inventory.maxSpirit );
 	_hud->SetStateFloat( "player_healthpercent", ((float)health)/inventory.maxHealth );
-	_hud->SetStateFloat( "player_healthR", inventory.maxHealth > 100 ? 0.75f : 0.6f );
-	_hud->SetStateFloat( "player_healthG", inventory.maxHealth > 100 ? 0.85f : 0.0f );
+	_hud->SetStateFloat( "player_healthR", inventory.maxHealth > 100 ? 0.75f : 0.0f );
+	_hud->SetStateFloat( "player_healthG", inventory.maxHealth > 100 ? 0.85f : 0.6f );
 	_hud->SetStateFloat( "player_healthB", inventory.maxHealth > 100 ? 1.0f : 0.0f );
-	_hud->SetStateFloat( "player_healthPulseR", inventory.maxHealth > 100 ? 1.0f : 1.0f );
-	_hud->SetStateFloat( "player_healthPulseG", inventory.maxHealth > 100 ? 1.0f : 0.0f );
+	_hud->SetStateFloat( "player_healthPulseR", inventory.maxHealth > 100 ? 1.0f : 0.0f );
+	_hud->SetStateFloat( "player_healthPulseG", inventory.maxHealth > 100 ? 1.0f : 1.0f );
 	_hud->SetStateFloat( "player_healthPulseB", inventory.maxHealth > 100 ? 1.0f : 0.0f );
 	_hud->SetStateInt( "player_health", health );
 	_hud->SetStateInt( "player_maxhealth", inventory.maxHealth ); //rww
@@ -5002,15 +5002,16 @@ void hhPlayer::Think( void ) {
 		headRenderEnt = NULL;
 	}
 
-	if ( gameLocal.isMultiplayer || g_showPlayerShadow.GetBool() ) {
-		renderEntity.suppressShadowInViewID	= 0;
-		if ( headRenderEnt ) {
+	if( gameLocal.isMultiplayer || g_showPlayerShadow.GetBool() || pm_modelView.GetInteger() > 0 ) {
+		renderEntity.suppressShadowInViewID = 0;
+		if( headRenderEnt ) {
 			headRenderEnt->suppressShadowInViewID = 0;
+			headRenderEnt->allowSurfaceInViewID = entityNumber + 1;
 		}
 	} else {
-		renderEntity.suppressShadowInViewID	= entityNumber+1;
-		if ( headRenderEnt ) {
-			headRenderEnt->suppressShadowInViewID = entityNumber+1;
+		renderEntity.suppressShadowInViewID = entityNumber + 1;
+		if( headRenderEnt ) {
+			headRenderEnt->suppressShadowInViewID = entityNumber + 1;
 		}
 	}
 	// never cast shadows from our first-person muzzle flashes
