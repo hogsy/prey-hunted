@@ -363,11 +363,13 @@ FodyWeavers.xsd
 
 # ----------------------------------------
 
-preyconfig.cfg
 
-gamex86.*
+/gamex86.*
 
 src/DebugDLL/
 src/game/DebugDLL/
 src/idLib/DebugDLL/
 
+/preyconfig.cfg
+/editor.cfg
+/config.spec
