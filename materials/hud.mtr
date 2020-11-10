@@ -1,10 +1,13 @@
+table hud_scanline_effect { { 0.25, 0.35, 0.75, 1.0, 0.75, 0.25, 0.0 } }
+
 guis/assets/hud/health_body
 {
     {
-		blend   	gl_zero, gl_one_minus_src_alpha
+		blend   	gl_one_minus_dst_alpha, gl_one_minus_src_alpha
 		map			guis/assets/hud/scanline.tga
 		scroll 		0, time * 0.5 * -1
-		scale		1, 0.7
+		centerscale	1.0, (0.2 * sintable [.45 + time * .5 ]) + 0.85
+		alpha		hud_scanline_effect[ .45 + time * .5 ]
 	}
 	{
 		blend  		gl_one_minus_dst_alpha, gl_dst_alpha
@@ -13,15 +16,6 @@ guis/assets/hud/health_body
 		green		1.0
 		blue		0.0
 	}
-	/*
-	{
-		blend  		add
-		map			guis/assets/hud/health_body_scan.tga
-		red			0.0
-		green		0.15
-		blue		0.0
-	}
-	*/
 	{
 		blend   	add
 		map         guis/assets/hud/health_body.tga
@@ -30,13 +24,15 @@ guis/assets/hud/health_body
 		green		1.0
 		blue		0.0
 	}
+
 	{
 		blend  		gl_one, gl_one
 		map			guis/assets/hud/scanline.tga
 		scroll 		0, time * 0.5 * -1
 		red			0.0
-		green		1.0
+		green		hud_scanline_effect[ .45 + time * .5 ]
 		blue		0.0
-		scale		1, 0.7
+		alpha		hud_scanline_effect[ .45 + time * .5 ]
+		centerscale	1.0, (0.2 * sintable [.45 + time * .5 ]) + 0.85
 	}
 }

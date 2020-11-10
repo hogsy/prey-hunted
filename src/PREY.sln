@@ -9,6 +9,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3FCB1614-2279-483F-8FA8-34CB3D7D67B7}"
 	ProjectSection(SolutionItems) = preProject
 		.clang-format = .clang-format
+		..\readme.txt = ..\readme.txt
+		todo.md = todo.md
 	EndProjectSection
 EndProject
 Global
