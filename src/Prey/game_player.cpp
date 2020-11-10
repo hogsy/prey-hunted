@@ -945,13 +945,6 @@ void hhPlayer::UpdateHudStats( idUserInterface *_hud ) {
 	bool disallowHealth = bLotaTunnelMode || (IsLocked(1) && !gameLocal.IsLOTA()) || privateCameraView != NULL;
 	bool disallowProgress = bLotaTunnelMode || privateCameraView != NULL || IsDeathWalking();
 
-	if (disallowHealth) {
-		int blah = 0;
-	}
-	else {
-		int blah2 = 0;
-	}
-
 	_hud->SetStateBool("invehicle", InVehicle());
 	_hud->SetStateBool("deathwalking", IsDeathWalking());
 	_hud->SetStateBool("spiritwalking", IsSpiritWalking());
@@ -3493,6 +3486,7 @@ void hhPlayer::Killed( idEntity *inflictor, idEntity *attacker, int damage, cons
 		DoDeathDrop();
 	}
 
+#if 0 // Remove deathwalk ~hogsy
 	if ( gameLocal.isMultiplayer && !gameLocal.IsCooperative() ) {
 		bDeathWalk = false;
 		bSpiritWalk = false;
@@ -3503,6 +3497,11 @@ void hhPlayer::Killed( idEntity *inflictor, idEntity *attacker, int damage, cons
 		bSpiritWalk = false;
 		bReallyDead = true;
 	}
+#else
+	bDeathWalk = false;
+	bSpiritWalk = false;
+	bReallyDead = true;
+#endif
 
 	//First thing we do is get out of vehicle
 	if (InVehicle()) {

@@ -6274,7 +6274,7 @@ void idPlayer::CalculateFirstPersonView( void ) {
 
 	// Move the camera back a little bit further into the head...
 	idVec3 forward = viewAngles.ToForward();
-	origin -= forward * 4.0f;
+	origin -= forward * pm_modelViewForward.GetFloat();
 
 	firstPersonViewOrigin = origin;
 	firstPersonViewAxis = viewAngles.ToMat3();
