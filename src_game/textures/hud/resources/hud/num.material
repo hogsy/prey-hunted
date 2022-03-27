@@ -1,0 +1,93 @@
+{
+	$flags "PRESERVE"
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num0"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num1"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num2"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num3"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num4"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num5"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num6"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num7"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num8"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/num9"
+		{
+		}
+	}
+}

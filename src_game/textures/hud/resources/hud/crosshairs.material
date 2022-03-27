@@ -1,0 +1,22 @@
+HUD_Crosshairs
+{
+	$flags "PRESERVE"
+	
+	$skin
+	{
+		$blend "1"
+		
+		$map "materials/menu/hud/crosshair0"
+		{
+		}
+	}
+	
+	$skin
+	{
+		$blend "1"
+	
+		$map "materials/menu/hud/crosshair1"
+		{
+		}
+	}
+}

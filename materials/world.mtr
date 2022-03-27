@@ -1,0 +1,36 @@
+// HOSPITAL
+
+textures/hospital/checkerboard00a {
+    qer_editorimage textures/hospital/checkerboard00a.tga
+    diffusemap      textures/hospital/checkerboard00a.tga
+    
+    /*
+    {
+        blend   gl_dst_color, gl_one
+        scale   2, 2
+        map     textures/detail/paper.tga
+    }
+    */
+}
+
+textures/hospital/checkerboard00b {
+    diffusemap      textures/hospital/checkerboard00b.tga
+}
+
+// BIO
+
+textures/bio/biowall00a {
+    diffusemap      textures/bio/biowall00a.tga
+}
+
+textures/bio/biowall00b {
+    diffusemap      textures/bio/biowall00b.tga
+}
+
+textures/bio/biotile01a {
+    diffusemap      textures/bio/biotile01a.tga
+}
+
+textures/bio/biotile01b {
+    diffusemap      textures/bio/biotile01b.tga
+}

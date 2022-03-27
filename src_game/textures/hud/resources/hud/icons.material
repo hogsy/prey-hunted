@@ -1,0 +1,63 @@
+{
+	$flags "PRESERVE"
+	
+	// Health
+	$skin
+	{
+		$additive "1"
+		
+		$map "materials/effects/white_scanline_small"
+		{
+			$scroll "0 -0.5"
+		}
+	
+		$map "materials/menu/hud/health"
+		{
+		}
+	}
+	
+	// Armor
+	$skin
+	{
+		$additive "1"
+		
+		$map "materials/effects/white_scanline_small"
+		{
+			$scroll "0 -0.5"
+		}
+	
+		$map "materials/menu/hud/armor"
+		{
+		}
+	}
+	
+	// Heart Rate
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/health_shadow" //"materials/effects/white_scanline_horz"
+		{
+		}
+		
+		$map "materials/menu/hud/heart_wave0"
+		{
+			$scroll "-0.5 0"
+		}
+	}
+	
+	// Armor Rate 0
+	$skin
+	{
+		$additive "1"
+	
+		$map "materials/menu/hud/armor_shadow"
+		{
+		}
+		
+		$map "materials/menu/hud/armor_wave0"
+		{
+			$scroll "-0.5 0"
+		}
+	}
+}
