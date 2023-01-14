@@ -363,6 +363,9 @@ FodyWeavers.xsd
 
 # ----------------------------------------
 
+*.bak
+*.darkradiant
+*_autosave*
 
 /gamex86.*
 
