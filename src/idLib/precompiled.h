@@ -43,9 +43,10 @@
 #endif /* !GAME_DLL */
 #endif /* !_D3SDK */
 
-#pragma warning(disable : 4100)				// unreferenced formal parameter
-#pragma warning(disable : 4244)				// conversion to smaller type, possible loss of data
-#pragma warning(disable : 4714)				// function marked as __forceinline not inlined
+#		pragma warning( disable : 4100 )// unreferenced formal parameter
+#		pragma warning( disable : 4244 )// conversion to smaller type, possible loss of data
+#		pragma warning( disable : 4714 )// function marked as __forceinline not inlined
+#		pragma warning( disable : 4458 )// declaration of 'x' hides class member
 
 #include "../framework/dotnetwarnings.h" //HUMANHEAD rww
 
